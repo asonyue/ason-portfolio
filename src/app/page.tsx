@@ -30,8 +30,8 @@ function TypewriterText({ text }: { text: string }) {
 function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { t, language, setLanguage } = useLanguage();
-  const { theme, toggleTheme } = useTheme();
+  const { t, language, languageMode, toggleLanguage } = useLanguage();
+  const { theme, themeMode, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -52,6 +52,22 @@ function Navigation() {
     { name: t.nav.awards, href: '#awards' },
     { name: t.nav.contact, href: '#contact' },
   ];
+
+  const themeButtonIcon =
+    themeMode === 'system' ? (theme === 'dark' ? '🖥️🌙' : '🖥️☀️') : themeMode === 'light' ? '☀️' : '🌙';
+
+  const themeButtonTitle =
+    themeMode === 'system'
+      ? `Theme: Auto (${theme}). Click to cycle Auto -> Light -> Dark.`
+      : `Theme: ${themeMode}. Click to cycle Auto -> Light -> Dark.`;
+
+  const languageButtonLabel =
+    languageMode === 'system' ? `Auto ${language === 'zh' ? '中' : 'EN'}` : languageMode === 'zh' ? '中文' : 'EN';
+
+  const languageButtonTitle =
+    languageMode === 'system'
+      ? `Language: Auto (${language}). Click to cycle Auto -> 中文 -> EN.`
+      : `Language: ${languageMode}. Click to cycle Auto -> 中文 -> EN.`;
 
   return (
     <motion.nav
@@ -86,16 +102,19 @@ function Navigation() {
           <div className="flex gap-1 sm:gap-2 items-center">
             <button
               onClick={toggleTheme}
+              suppressHydrationWarning
               className="p-1.5 sm:p-2 rounded-full bg-card hover:bg-accent/20 border border-foreground/20 transition-colors duration-300 text-sm"
-              title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+              title={themeButtonTitle}
             >
-              {theme === 'dark' ? '☀️' : '🌙'}
+              {themeButtonIcon}
             </button>
             <button
-              onClick={() => setLanguage(language === 'zh' ? 'en' : 'zh')}
+              onClick={toggleLanguage}
+              suppressHydrationWarning
               className="px-2 sm:px-3 py-1.5 rounded-full bg-card hover:bg-accent/20 border border-foreground/20 transition-colors duration-300 text-xs sm:text-sm font-[family-name:var(--font-jetbrains)]"
+              title={languageButtonTitle}
             >
-              {language === 'zh' ? 'EN' : '中'}
+              {languageButtonLabel}
             </button>
             {/* Hamburger menu - mobile only */}
             <button
@@ -274,11 +293,11 @@ function About() {
           transition={{ duration: 0.6 }}
           className="max-w-3xl mx-auto text-center"
         >
-          <span className="font-[family-name:var(--font-playfair)] text-6xl text-accent/20 leading-none block">"</span>
+          <span className="font-[family-name:var(--font-playfair)] text-6xl text-accent/20 leading-none block">&quot;</span>
           <p className="text-sm md:text-base text-foreground/80 italic leading-relaxed px-4 -mt-6 text-left whitespace-pre-line">
             {t.about.content}
           </p>
-          <span className="font-[family-name:var(--font-playfair)] text-6xl text-accent/20 leading-none block mt-2">"</span>
+          <span className="font-[family-name:var(--font-playfair)] text-6xl text-accent/20 leading-none block mt-2">&quot;</span>
         </motion.div>
       </div>
     </section>

@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+:root {
+  color-scheme: dark;
+}
+
 :root,
 [data-theme="dark"] {
   --background: #0a0a0f;
@@ -13,6 +17,7 @@
 }
 
 [data-theme="light"] {
+  color-scheme: light;
   --background: #ffffff;
   --foreground: #1a1a2e;
   --accent: #e85a24;
@@ -32,6 +37,10 @@
   --color-muted: var(--muted);
   --color-card-bg-light: var(--card-bg-light);
   --color-section-alt: var(--section-alt);
+}
+
+html {
+  background: var(--background);
 }
 
 * {
