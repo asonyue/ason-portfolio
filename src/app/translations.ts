@@ -144,25 +144,27 @@ export const translations = {
           ],
         },
         {
+          title: '精誠資訊資安顧問實習',
+          descriptions: [
+            '於精誠資訊擔任資安顧問實習生',
+            '參與以 Django 與 Python 開發的零信任安全平台',
+            '撰寫資安評估報告與系統架構圖',
+          ],
+        },
+        {
           title: 'Google 雲端認證',
           descriptions: [
-            'Google 數位人才台灣認證計畫',
-            '雲端運算和基礎設施管理技能',
+            '完成 Google 數位人才台灣認證計畫',
+            '建立雲端運算與基礎設施管理的基礎知識',
+            '加強對雲端平台與相關服務的實務理解',
           ],
         },
         {
           title: 'Google 數位行銷認證',
           descriptions: [
-            'Google 數位人才台灣認證計畫',
-            '數位行銷策略和分析',
-          ],
-        },
-        {
-          title: 'Google 開發者學生俱樂部認證',
-          descriptions: [
-            '淡江大學 Google 開發者學生俱樂部核心成員',
-            '組織技術工作坊和程式設計活動',
-            '指導同學學習 Google 技術',
+            '完成 Google 數位人才台灣認證計畫',
+            '學習數位行銷策略與數據分析基礎',
+            '建立對線上廣告與行銷活動管理的實務理解',
           ],
         },
       ],
@@ -318,25 +320,27 @@ export const translations = {
           ],
         },
         {
+          title: 'Cybersecurity Consultant Intern at Systex Corporation',
+          descriptions: [
+            'Worked as a Cybersecurity Consultant Intern at Systex Corporation',
+            'Contributed to the development of a Zero Trust security platform using Django and Python',
+            'Prepared cybersecurity assessment reports and system architecture diagrams',
+          ],
+        },
+        {
           title: 'Google Cloud Certification',
           descriptions: [
-            'Google Digital Talent Taiwan Certification Program',
-            'Cloud computing and infrastructure management skills',
+            'Completed the Google Digital Talent Taiwan certification program',
+            'Built foundational knowledge in cloud computing and infrastructure management',
+            'Strengthened practical understanding of cloud platforms and related services',
           ],
         },
         {
           title: 'Google Digital Marketing Certification',
           descriptions: [
-            'Google Digital Talent Taiwan Certification Program',
-            'Digital marketing strategy and analytics',
-          ],
-        },
-        {
-          title: 'Google Developer Student Club Certification',
-          descriptions: [
-            'Tamkang University Google Developer Student Club (GDSC) Core Member',
-            'Organized technical workshops and programming events',
-            'Guided fellow students in learning Google technologies',
+            'Completed the Google Digital Talent Taiwan certification program',
+            'Developed knowledge of digital marketing strategy and analytics',
+            'Gained practical understanding of online advertising and campaign management',
           ],
         },
       ],
