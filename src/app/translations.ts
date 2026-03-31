@@ -14,7 +14,7 @@ export const translations = {
       subtitle: 'Yue',
       role: '品質保證工程師',
       quote: '「品質保證工程師是開發者與顧客之間的橋樑」',
-      viewProjects: '查看作品',
+      viewProjects: '探索我的背景',
       contactMe: '聯絡我',
     },
     about: {
@@ -193,7 +193,7 @@ export const translations = {
       subtitle: 'Yue',
       role: 'QA Engineer',
       quote: '"QA engineers are the bridge between developers and customers"',
-      viewProjects: 'View Projects',
+      viewProjects: 'Explore My Background',
       contactMe: 'Contact Me',
     },
     about: {
