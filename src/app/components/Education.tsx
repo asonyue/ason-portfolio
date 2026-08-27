@@ -1,16 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useLanguage } from '../LanguageContext';
+import educationData from '../../../content/education.json';
 
 export function Education() {
-  const { t } = useLanguage();
-
-  const educationWithIcons = [
-    { ...t.education.schools[0], icon: '/logos/tamkang-logo.png' },
-    { ...t.education.schools[1], icon: '/logos/temple-logo.png' },
-  ];
-
   return (
     <section id="education" className="py-24 px-6">
       <div className="max-w-4xl mx-auto">
@@ -21,11 +14,11 @@ export function Education() {
           transition={{ duration: 0.6 }}
           className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl font-bold text-center mb-16"
         >
-          {t.education.title.split(' ')[0]} <span className="text-accent">{t.education.title.split(' ')[1]}</span>
+          Educational <span className="text-accent">Background</span>
         </motion.h2>
 
         <div className="space-y-6">
-          {educationWithIcons.map((edu, index) => (
+          {educationData.map((edu, index) => (
             <motion.div
               key={edu.school}
               initial={{ opacity: 0, y: 20 }}
@@ -52,32 +45,26 @@ export function Education() {
                       <h3 className="font-[family-name:var(--font-playfair)] text-lg sm:text-xl font-bold text-foreground">
                         {edu.school}
                       </h3>
-                      <p className="text-foreground/70 text-sm">{edu.degree}</p>
+                      <p className="text-foreground/70 text-sm">{edu.degree} • {edu.location}</p>
                       {edu.gpa && (
-                        <p className="text-sm text-foreground/60 mt-1 font-[family-name:var(--font-jetbrains)]">
-                          {edu.gpa}
+                        <p className="text-sm text-accent/80 mt-1 font-[family-name:var(--font-jetbrains)] font-semibold">
+                          GPA: {edu.gpa}
                         </p>
                       )}
                     </div>
-                    <span className="font-[family-name:var(--font-jetbrains)] text-xs sm:text-sm text-muted">
+                    <span className="font-[family-name:var(--font-jetbrains)] text-xs sm:text-sm text-muted whitespace-nowrap">
                       {edu.period}
                     </span>
                   </div>
-                  {edu.activities && (
-                    <ul className="mt-2 space-y-1">
-                      {edu.activities.map((activity, idx) => (
+                  {edu.highlights && edu.highlights.length > 0 && (
+                    <ul className="mt-3 space-y-1">
+                      {edu.highlights.map((highlight, idx) => (
                         <li key={idx} className="text-sm text-foreground/60 flex items-start gap-2">
                           <span className="text-accent mt-1">▸</span>
-                          <span>{activity}</span>
+                          <span>{highlight}</span>
                         </li>
                       ))}
                     </ul>
-                  )}
-                  {edu.project && (
-                    <p className="text-sm text-foreground/60 mt-2 flex items-start gap-2">
-                      <span className="text-accent mt-1">▸</span>
-                      <span>{edu.project}</span>
-                    </p>
                   )}
                 </div>
               </div>

@@ -2,13 +2,11 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { useLanguage } from '../LanguageContext';
 import { useTheme } from '../ThemeContext';
 
 export function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { t, language, languageMode, toggleLanguage } = useLanguage();
   const { theme, themeMode, toggleTheme } = useTheme();
 
   useEffect(() => {
@@ -22,12 +20,11 @@ export function Navigation() {
   const handleNavClick = () => setMobileMenuOpen(false);
 
   const navLinks = [
-    { name: t.nav.about, href: '#about' },
-    { name: t.nav.skills, href: '#skills' },
-    { name: t.nav.experience, href: '#experience' },
-    { name: t.nav.education, href: '#education' },
-    { name: t.nav.awards, href: '#awards' },
-    { name: t.nav.contact, href: '#contact' },
+    { name: 'About', href: '#stories' },
+    { name: 'Skills', href: '#skills' },
+    { name: 'Experience', href: '#experience' },
+    { name: 'Education', href: '#education' },
+    { name: 'Contact', href: '#contact' },
   ];
 
   const themeButtonIcon =
@@ -37,14 +34,6 @@ export function Navigation() {
     themeMode === 'system'
       ? `Theme: Auto (${theme}). Click to cycle Auto -> Light -> Dark.`
       : `Theme: ${themeMode}. Click to cycle Auto -> Light -> Dark.`;
-
-  const languageButtonLabel =
-    languageMode === 'system' ? `Auto ${language === 'zh' ? '中' : 'EN'}` : languageMode === 'zh' ? '中文' : 'EN';
-
-  const languageButtonTitle =
-    languageMode === 'system'
-      ? `Language: Auto (${language}). Click to cycle Auto -> 中文 -> EN.`
-      : `Language: ${languageMode}. Click to cycle Auto -> 中文 -> EN.`;
 
   return (
     <motion.nav
@@ -83,14 +72,6 @@ export function Navigation() {
               title={themeButtonTitle}
             >
               {themeButtonIcon}
-            </button>
-            <button
-              onClick={toggleLanguage}
-              suppressHydrationWarning
-              className="px-2 sm:px-3 py-1.5 rounded-full bg-card hover:bg-accent/20 border border-foreground/20 transition-colors duration-300 text-xs sm:text-sm font-[family-name:var(--font-jetbrains)]"
-              title={languageButtonTitle}
-            >
-              {languageButtonLabel}
             </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}

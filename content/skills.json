@@ -1,0 +1,34 @@
+{
+  "categories": [
+    {
+      "name": "Testing Types",
+      "items": [
+        "Functional Testing",
+        "Regression Testing",
+        "Integration Testing",
+        "Smoke Testing",
+        "Manual Testing",
+        "API Testing"
+      ]
+    },
+    {
+      "name": "Tools & Platforms",
+      "items": [
+        "Postman",
+        "Charles",
+        "Selenium",
+        "MySQL",
+        "OpenSearch",
+        "JaCoCo",
+        "Jira"
+      ]
+    },
+    {
+      "name": "Programming",
+      "items": [
+        "Python",
+        "JavaScript (basic)"
+      ]
+    }
+  ]
+}

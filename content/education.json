@@ -1,0 +1,26 @@
+[
+  {
+    "school": "Tamkang University",
+    "degree": "B.S. Computer Science",
+    "location": "Taiwan",
+    "period": "2021 - 2025",
+    "gpa": "3.8",
+    "icon": "/logos/tamkang-logo.png",
+    "highlights": [
+      "Full scholarship for Temple University exchange program (2023-2024)",
+      "Language tutor & student ambassador during exchange",
+      "Graduated with honors"
+    ]
+  },
+  {
+    "school": "Temple University",
+    "degree": "Exchange Student",
+    "location": "United States",
+    "period": "2023 - 2024",
+    "icon": "/logos/temple-logo.png",
+    "highlights": [
+      "Full scholarship recipient",
+      "Language tutor & student ambassador"
+    ]
+  }
+]
