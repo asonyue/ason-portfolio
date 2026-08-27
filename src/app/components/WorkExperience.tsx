@@ -1,17 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useLanguage } from '../LanguageContext';
+import experienceData from '../../../content/experience.json';
 
 export function WorkExperience() {
-  const { t } = useLanguage();
-
-  const experiencesWithIcons = [
-    { ...t.experience.jobs[0], icon: '/logos/data-annotation-logo.png' },
-    { ...t.experience.jobs[1], icon: '/logos/hytech-logo.png' },
-    { ...t.experience.jobs[2], icon: '/logos/systex-logo.png' },
-  ];
-
   return (
     <section id="experience" className="py-24 px-6 bg-card/30">
       <div className="max-w-4xl mx-auto">
@@ -22,11 +14,11 @@ export function WorkExperience() {
           transition={{ duration: 0.6 }}
           className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl font-bold text-center mb-16"
         >
-          {t.experience.title.split(' ')[0]} <span className="text-secondary">{t.experience.title.split(' ')[1]}</span>
+          Work <span className="text-secondary">Experience</span>
         </motion.h2>
 
         <div className="space-y-6">
-          {experiencesWithIcons.map((exp, index) => (
+          {experienceData.map((exp, index) => (
             <motion.div
               key={exp.company}
               initial={{ opacity: 0, y: 20 }}
@@ -53,22 +45,20 @@ export function WorkExperience() {
                       <h3 className="font-[family-name:var(--font-playfair)] text-lg sm:text-xl font-bold text-foreground">
                         {exp.role}
                       </h3>
-                      <p className="text-foreground/70 text-sm">{exp.company}</p>
+                      <p className="text-foreground/70 text-sm">{exp.company} • {exp.location}</p>
                     </div>
-                    <span className="font-[family-name:var(--font-jetbrains)] text-xs sm:text-sm text-muted">
+                    <span className="font-[family-name:var(--font-jetbrains)] text-xs sm:text-sm text-muted whitespace-nowrap">
                       {exp.period}
                     </span>
                   </div>
-                  {exp.descriptions && (
-                    <ul className="mt-3 space-y-1">
-                      {exp.descriptions.map((desc, idx) => (
-                        <li key={idx} className="text-sm text-foreground/60 flex items-start gap-2">
-                          <span className="text-accent mt-1">•</span>
-                          <span>{desc}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
+                  <ul className="mt-3 space-y-1.5">
+                    {exp.descriptions.map((desc, idx) => (
+                      <li key={idx} className="text-sm text-foreground/60 flex items-start gap-2">
+                        <span className="text-accent mt-1">•</span>
+                        <span>{desc}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             </motion.div>

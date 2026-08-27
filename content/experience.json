@@ -1,0 +1,44 @@
+[
+  {
+    "company": "Hytech",
+    "role": "Quality Assurance Engineer",
+    "location": "Taiwan",
+    "period": "August 2025 - Present",
+    "type": "Full-time",
+    "icon": "/logos/hytech-logo.png",
+    "descriptions": [
+      "Function and regression testing on web + mobile for payment modules (deposit, withdraw, transfer) across sub-brands and regulators (VFSC2, ASIC, FCA)",
+      "Integration testing across CRM, SRC, Anti-Fraud, Account and Activity modules",
+      "SQL and OpenSearch log analysis for backend validation",
+      "AI-assisted test design with JaCoCo coverage analysis",
+      "Daily collaboration with PMs, developers, and QA teams in Malaysia, China, and Taiwan"
+    ]
+  },
+  {
+    "company": "SYSTEX",
+    "role": "Cyber Security Consultant Intern",
+    "location": "Taiwan",
+    "period": "February 2025 - June 2025",
+    "type": "Internship",
+    "icon": "/logos/systex-logo.png",
+    "descriptions": [
+      "Zero Trust Maturity Model (ZTMM) assessments for banking, restaurant, and manufacturing clients",
+      "Transformed manual Excel ZTMM scoring process into formula-driven templates",
+      "Co-developed Python automation system for scoring and reporting",
+      "Conducted requirement meetings with senior consultants and enterprise clients"
+    ]
+  },
+  {
+    "company": "Temple University",
+    "role": "Language Tutor & Student Ambassador",
+    "location": "United States",
+    "period": "August 2023 - May 2024",
+    "type": "Part-time",
+    "icon": "/logos/temple-logo.png",
+    "descriptions": [
+      "Provided language tutoring and writing assistance to international students",
+      "Served as student ambassador representing Temple University",
+      "Excelled in 3 roles simultaneously during exchange program"
+    ]
+  }
+]
