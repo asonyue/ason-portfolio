@@ -1,9 +1,11 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import skillsData from '../../../content/skills.json';
+import type { HomepageContent } from '../../../content/portfolio';
+import { siteCopy, type Locale } from '../../../content/site-copy';
 
-export function Skills() {
+export function Skills({ data: skillsData, locale }: { data: HomepageContent['skills']; locale: Locale }) {
+  const copy = siteCopy[locale];
   return (
     <section id="skills" className="py-24 px-6 bg-section-alt">
       <div className="max-w-6xl mx-auto">
@@ -12,9 +14,9 @@ export function Skills() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl font-bold text-center mb-16"
+          className="font-[family-name:var(--font-display)] text-4xl md:text-5xl font-bold text-center mb-16"
         >
-          Professional <span className="text-secondary">Capabilities</span>
+          {copy.skillsPrefix}<span className="text-secondary">{copy.skillsAccent}</span>
         </motion.h2>
 
         <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
@@ -27,7 +29,7 @@ export function Skills() {
               transition={{ delay: catIndex * 0.1 }}
               className="bg-card rounded-2xl p-6 hover:scale-[1.02] transition-transform duration-300"
             >
-              <h3 className="font-[family-name:var(--font-playfair)] text-accent text-xl font-bold mb-4">
+              <h3 className="font-[family-name:var(--font-display)] text-accent text-xl font-bold mb-4">
                 {category.name}
               </h3>
               <p className="text-foreground/80 text-sm leading-relaxed mb-6">{category.description}</p>

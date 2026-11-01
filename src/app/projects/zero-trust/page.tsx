@@ -1,13 +1,19 @@
 import type { Metadata } from 'next';
-import { zeroTrust } from '../../../../content/projects';
+import { getProject } from '../../../../content/projects.zh-TW';
 import { ProjectCaseStudy } from '../../components/ProjectCaseStudy';
+import { getLocale } from '../../../lib/locale';
 
-export const metadata: Metadata = {
-  title: 'Zero Trust — Maturity Assessment System',
-  description: 'Ason Yue’s contribution to a team-developed Systex internship project: cybersecurity assessment workflows, system testing, API validation, and handover.',
-  alternates: { canonical: '/projects/zero-trust' },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  const project = getProject('zero-trust', locale);
+  return {
+    title: `${project.name} — ${project.subtitle}`,
+    description: project.summary,
+    alternates: { canonical: '/projects/zero-trust' },
+  };
+}
 
-export default function ZeroTrustPage() {
-  return <ProjectCaseStudy project={zeroTrust} />;
+export default async function ZeroTrustPage() {
+  const locale = await getLocale();
+  return <ProjectCaseStudy project={getProject('zero-trust', locale)} locale={locale} />;
 }

@@ -1,9 +1,11 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import personalData from '../../../content/personal.json';
+import type { HomepageContent } from '../../../content/portfolio';
+import { siteCopy, type Locale } from '../../../content/site-copy';
 
-export function Contact() {
+export function Contact({ personalData, locale }: { personalData: HomepageContent['personal']; locale: Locale }) {
+  const copy = siteCopy[locale];
   return (
     <section id="contact" className="py-24 px-6">
       <div className="max-w-4xl mx-auto text-center">
@@ -12,9 +14,9 @@ export function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl font-bold mb-6"
+          className="font-[family-name:var(--font-display)] text-4xl md:text-5xl font-bold mb-6"
         >
-          Let&apos;s <span className="gradient-text">Connect</span>
+          {copy.contactPrefix}<span className="gradient-text">{copy.contactAccent}</span>
         </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -23,7 +25,7 @@ export function Contact() {
           transition={{ delay: 0.2 }}
           className="text-foreground/80 text-lg mb-12"
         >
-          Interested in my experience in technology consulting, quality engineering, or digital solutions? Let&apos;s start a conversation.
+          {copy.contactIntro}
         </motion.p>
 
         <motion.div
@@ -68,7 +70,7 @@ export function Contact() {
           href={`mailto:${personalData.email}`}
           className="inline-block px-10 py-4 bg-accent text-button-foreground font-semibold text-lg rounded-full hover:bg-accent/90 transition-all duration-300 hover:scale-105 glow-accent"
         >
-          Get in Touch
+          {copy.getInTouch}
         </motion.a>
       </div>
     </section>

@@ -1,13 +1,19 @@
 import type { Metadata } from 'next';
-import { flowline } from '../../../../content/projects';
+import { getProject } from '../../../../content/projects.zh-TW';
 import { ProjectCaseStudy } from '../../components/ProjectCaseStudy';
+import { getLocale } from '../../../lib/locale';
 
-export const metadata: Metadata = {
-  title: 'Flowline — Personal Finance & AI Assistant',
-  description: 'Ason Yue’s Flowline case study: financial workflow design, product ownership, AI-assisted development, and functional validation.',
-  alternates: { canonical: '/projects/flowline' },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  const project = getProject('flowline', locale);
+  return {
+    title: `${project.name} — ${project.subtitle}`,
+    description: project.summary,
+    alternates: { canonical: '/projects/flowline' },
+  };
+}
 
-export default function FlowlinePage() {
-  return <ProjectCaseStudy project={flowline} />;
+export default async function FlowlinePage() {
+  const locale = await getLocale();
+  return <ProjectCaseStudy project={getProject('flowline', locale)} locale={locale} />;
 }

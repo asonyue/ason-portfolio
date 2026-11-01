@@ -1,9 +1,11 @@
 export interface ProjectImage {
   src: string;
   alt: string;
+  title?: string;
   caption: string;
   width: number;
   height: number;
+  featured?: boolean;
 }
 
 export interface CaseStudySection {
@@ -25,63 +27,173 @@ export interface Project {
   technologies: string[];
   sections: CaseStudySection[];
   images: ProjectImage[];
+  mediaTitle?: string;
+  mediaDescription?: string;
   video?: { href: string; label: string };
   demo?: { href: string; label: string };
 }
 
 export const flowline: Project = {
-  slug: 'flowline',
-  name: 'Flowline',
-  subtitle: 'Personal Finance & AI Assistant',
-  type: 'Independent project',
-  timeline: 'May 2026 – Present',
-  summary: 'Turning everyday financial commitments into a clearer picture of available funds, with an AI assistant that helps users explore their own financial data.',
-  role: 'Product requirements, workflow design, AI-assisted development direction, and functional validation',
-  technologies: ['Next.js', 'React', 'TypeScript', 'Prisma', 'PostgreSQL', 'OpenRouter'],
-  images: [],
-  sections: [
-    {
-      id: 'overview',
-      title: 'Overview',
-      paragraphs: ['Flowline is a personal finance application for understanding spending, planning cash flow, and tracking savings, assets, and liabilities. Its central question is practical: after accounting for commitments, how much money is available to spend?'],
-    },
-    {
-      id: 'challenge',
-      title: 'The challenge',
-      paragraphs: ['An account balance alone does not explain what is safe to spend. Upcoming credit card bills, recurring payments, and savings commitments can make available funds difficult to understand. I wanted a workflow that brings those obligations together before allocating money to everyday spending.'],
-    },
-    {
-      id: 'role',
-      title: 'My role',
-      paragraphs: ['I identified the financial management problems, defined product requirements and business rules, designed the planning workflows, and made product and technical decisions. I directed AI-assisted development using Codex and validated the resulting functionality through real-world usage and testing.', 'Codex produced much of the application code under my direction. My contribution combines product ownership, technical decision-making, and validation of the resulting implementation.'],
-    },
-    {
-      id: 'solution',
-      title: 'Solution design',
-      paragraphs: ['The monthly planning workflow accounts for financial commitments before category-level spending allocations. Transaction tracking, credit card bills, recurring payments, savings goals, and asset views provide context around that plan.'],
-      steps: [
-        { title: 'Define commitments', description: 'Record income schedules, recurring obligations, credit card bills, and savings or investment commitments.' },
-        { title: 'Calculate available funds', description: 'Account for those commitments to understand the remaining amount.' },
-        { title: 'Allocate and review', description: 'Allocate funds across spending categories and review actual transactions against the plan.' },
-      ],
-    },
-    {
-      id: 'technology',
-      title: 'Technology & implementation',
-      paragraphs: ['Flowline uses Next.js, React, and TypeScript, with Prisma and PostgreSQL for application data. Flowmi connects to generative AI through OpenRouter.', 'When a user asks a financial question, the model selects from predefined tools. The application validates arguments, executes scoped queries or calculations, and returns results for a natural-language explanation and visualization cards. Application-controlled tool execution provides boundaries; it does not guarantee that every AI interpretation is correct.'],
-      bullets: [
-        'query_transactions — retrieve transaction information and spending summaries.',
-        'query_budgets — retrieve budget allocations, usage, and remaining amounts.',
-        'query_assets — retrieve account, asset, and liability information.',
-        'calculate — execute bounded calculations for the requested analysis.',
-      ],
-    },
-    {
-      id: 'validation',
-      title: 'Validation & outcomes',
-      paragraphs: ['I use and test the application to check whether its financial rules, workflows, and AI-assisted responses fit practical needs. This work has produced a functioning application and an ongoing process of identifying issues and refining behavior.', 'The project brings requirements definition, financial workflow design, and AI-assisted implementation together in a product I can validate through everyday use. It remains an independent project under active development.'],
-    },
+  "slug": "flowline",
+  "name": "Flowline",
+  "subtitle": "Personal Finance & AI Assistant",
+  "type": "Independent project",
+  "timeline": "May 2026 – Present",
+  "summary": "Connecting everyday money tracking with monthly plans, savings goals, and assets to help users understand what they can spend and explore their financial records with Flowmi AI.",
+  "role": "Independent product planning, financial rules, AI-assisted implementation, and end-to-end validation",
+  "technologies": [
+    "Next.js",
+    "React",
+    "TypeScript",
+    "Prisma",
+    "PostgreSQL",
+    "OpenRouter"
   ],
+  "images": [
+    {
+      "src": "/projects/flowline/TransactionPage.png",
+      "title": "Record everyday transactions",
+      "alt": "Flowline demo transaction page showing monthly cash flow, income and expense totals, and categorized transactions in Traditional Chinese.",
+      "caption": "The transaction view brings categorized income and expenses into a monthly history. Its cash-flow total describes recorded money movements; the separate spending plan determines the remaining spending allowance.",
+      "width": 652,
+      "height": 1394,
+      "featured": true
+    },
+    {
+      "src": "/projects/flowline/SpendingPlan.png",
+      "title": "Plan what remains available to spend",
+      "alt": "Flowline spending plan showing a remaining monthly allowance, spending to date, a funding-plan entry, and category allowances.",
+      "caption": "The spending plan compares actual spending with the monthly allowance and category allocations. The funding workflow accounts for expected income, chosen savings drawdowns, fixed payments, savings, investments, and additional credit-card reserves.",
+      "width": 648,
+      "height": 1392,
+      "featured": true
+    },
+    {
+      "src": "/projects/flowline/SavingPlan.png",
+      "title": "Connect monthly saving with longer-term goals",
+      "alt": "Flowline savings plan showing confirmed monthly savings progress, a My jars entry, and a completed emergency-fund contribution.",
+      "caption": "Monthly arrangements track confirmed savings and investment contributions. The My jars entry connects those arrangements to longer-term goals, such as an emergency fund or travel. Jars earmark existing account funds without adding to net worth.",
+      "width": 648,
+      "height": 1378
+    },
+    {
+      "src": "/projects/flowline/AssetPage.png",
+      "title": "Review assets, liabilities, and net worth",
+      "alt": "Flowline asset overview showing net worth, change since the prior month, liquid accounts, investments, and liabilities.",
+      "caption": "The asset overview separates liquid funds, investments, and liabilities to explain recorded net worth. Month navigation supports historical review, while the account breakdown provides context beyond transaction totals.",
+      "width": 650,
+      "height": 1384
+    },
+    {
+      "src": "/projects/flowline/FlowmiaiPage.png",
+      "title": "Ask Flowmi to explain the records",
+      "alt": "Flowmi conversation analyzing a demo month’s income, expenses, top spending categories, and possible savings in Traditional Chinese.",
+      "caption": "A natural-language question brings together monthly totals, ranked spending categories, and practical suggestions based on recorded data. Flowmi’s financial tools retrieve information and perform calculations; they do not change financial records.",
+      "width": 650,
+      "height": 1404,
+      "featured": true
+    }
+  ],
+  "mediaTitle": "Product walkthrough",
+  "mediaDescription": "Five screens connect transaction tracking, monthly planning, savings, asset management, and Flowmi analysis. These screenshots use fictional demo data. The interface is shown in Traditional Chinese, with English explanations; Flowline also supports English.",
+  "sections": [
+    {
+      "id": "overview",
+      "title": "Overview",
+      "paragraphs": [
+        "Flowline is a personal finance web application that connects everyday money tracking with monthly planning, savings goals, and AI-assisted financial analysis. It helps users move from recording transactions to making practical decisions about what they can spend, save, and set aside."
+      ]
+    },
+    {
+      "id": "challenge",
+      "title": "The challenge",
+      "paragraphs": [
+        "Income minus expenses does not explain every financial commitment. Credit-card obligations, recurring payments, planned savings, and investments all affect the money available for daily spending. I wanted to connect those pieces in one workflow so that tracking past activity also supports decisions about the month ahead."
+      ]
+    },
+    {
+      "id": "role",
+      "title": "My role",
+      "paragraphs": [
+        "I independently planned and built Flowline with support from AI coding tools. I framed the financial management problem, defined requirements and business rules, designed workflows, and made product and technical decisions.",
+        "I used Codex to support implementation and remained responsible for directing development, reviewing behavior, and validating the product through real-world usage and testing. The project combines product ownership, data interpretation, practical AI application, and end-to-end delivery."
+      ]
+    },
+    {
+      "id": "solution",
+      "title": "How the product fits together",
+      "paragraphs": [
+        "The application connects recorded activity with a forward-looking funding plan. Users can review spending against allocations, track goals, understand their overall financial position, and ask follow-up questions through Flowmi."
+      ],
+      "steps": [
+        {
+          "title": "Track money movements",
+          "description": "Record and categorize income and expenses, identify payment accounts, and review transaction history."
+        },
+        {
+          "title": "Build the monthly plan",
+          "description": "Allocate expected income and chosen savings drawdowns across fixed payments, savings, investments, credit-card reserves, and daily spending."
+        },
+        {
+          "title": "Monitor spending and savings",
+          "description": "Compare category allocations with actual spending, confirm savings contributions, and earmark account funds toward goals with jars."
+        },
+        {
+          "title": "Review and explore",
+          "description": "Review accounts, liabilities, net worth, trends, and historical months, then ask Flowmi to explain the recorded information."
+        }
+      ]
+    },
+    {
+      "id": "financial-rules",
+      "title": "Financial rules behind the interface",
+      "paragraphs": [
+        "The product depends on keeping several financial concepts separate. These distinctions guide the planning logic and the way results are explained to users."
+      ],
+      "bullets": [
+        "Planned monthly funding combines expected income and chosen savings drawdowns. It is distinct from the current bank balance.",
+        "The remaining spending allowance reflects planned commitments and actual daily spending. It is different from income minus expenses.",
+        "Credit-card purchases count as expenses; repayments are transfers and must not become a second expense. Additional funding reserves account for obligations not already covered by the plan.",
+        "Savings jars earmark money already held in an account. They track a purpose and goal without increasing net worth.",
+        "Current-month credit-card reserves are calculated dynamically. Historical months use saved plan information to preserve their financial context."
+      ]
+    },
+    {
+      "id": "flowmi",
+      "title": "How Flowmi works",
+      "paragraphs": [
+        "Flowmi connects to generative AI models through OpenRouter. A user asks a question in natural language, and the model selects from four application-defined tools to retrieve information or perform a calculation.",
+        "The backend validates tool arguments, executes queries and calculations, and manages execution limits, errors, response structure, persistent conversations, and conversation context. Results support explanations and financial visualizations. The financial tools are read-only and do not modify records."
+      ],
+      "bullets": [
+        "query_transactions — retrieve transactions, totals, trends, and spending breakdowns.",
+        "query_budgets — retrieve allocations, usage, and remaining spending allowances.",
+        "query_assets — retrieve account balances, assets, liabilities, and savings-jar information.",
+        "calculate — perform bounded calculations using the supplied financial information."
+      ]
+    },
+    {
+      "id": "technology",
+      "title": "Technology & implementation",
+      "paragraphs": [
+        "Next.js provides both the frontend and backend, with React and TypeScript connecting the interface to application business logic. PostgreSQL and Prisma provide data storage and access. The application supports Traditional Chinese and English."
+      ],
+      "bullets": [
+        "Interface and visualization: Tailwind CSS and Recharts support planning views, income and spending trends, category breakdowns, asset allocation, and investment value versus contributed cost.",
+        "Backend: Next.js API routes run on Node.js, with TypeScript business logic and Zod validation.",
+        "AI integration: OpenRouter connects Flowmi to generative AI models and application-controlled financial tools.",
+        "Delivery: Docker packages the application for deployment on Railway."
+      ]
+    },
+    {
+      "id": "validation",
+      "title": "Validation & outcomes",
+      "paragraphs": [
+        "I validate the application through everyday usage and testing, focusing on whether recorded transactions, funding plans, savings arrangements, and financial explanations behave consistently. This provides an ongoing way to identify issues and refine the product.",
+        "Flowline brings problem framing, financial data interpretation, workflow design, and AI-assisted implementation together in a working independent application. The screenshots below demonstrate existing functionality using fictional financial data."
+      ]
+    }
+  ]
 };
 
 export const zeroTrust: Project = {

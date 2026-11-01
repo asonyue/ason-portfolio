@@ -5,6 +5,8 @@ import { ThemeProvider } from "./ThemeContext";
 import { Navigation } from "./components/Navigation";
 import { Footer } from "./components/Footer";
 import { getAvailableResumes } from "../lib/resumes";
+import { getLocale } from "../lib/locale";
+import { siteCopy } from "../../content/site-copy";
 
 const themeInitScript = `
 (() => {
@@ -39,14 +41,15 @@ const jetbrainsMono = JetBrains_Mono({
   weight: ["400", "500"],
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://asonyue.com"),
-  title: {
-    default: "Ason Yue | Technology Consulting & Quality Engineering",
-    template: "%s | Ason Yue",
-  },
-  description: "Bridging business challenges and technology through cybersecurity consulting, FinTech quality engineering, and AI-assisted product development.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  const copy = siteCopy[locale];
+  return {
+    metadataBase: new URL("https://asonyue.com"),
+    title: { default: copy.siteTitle, template: "%s | Ason Yue" },
+    description: copy.siteDescription,
+  };
+}
 
 export const viewport: Viewport = {
   themeColor: [
@@ -55,15 +58,17 @@ export const viewport: Viewport = {
   ],
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const resumes = getAvailableResumes();
+  const locale = await getLocale();
+  const copy = siteCopy[locale];
+  const resumes = getAvailableResumes(locale);
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={locale === "zh-TW" ? "zh-Hant-TW" : "en"} data-language={locale} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
@@ -71,10 +76,10 @@ export default function RootLayout({
         className={`${dmSans.variable} ${playfair.variable} ${jetbrainsMono.variable} antialiased`}
       >
         <ThemeProvider>
-          <a href="#main-content" className="skip-link">Skip to main content</a>
-          <Navigation resumes={resumes} />
+          <a href="#main-content" className="skip-link">{copy.skip}</a>
+          <Navigation resumes={resumes} locale={locale} />
           <main id="main-content" tabIndex={-1} className="min-h-screen bg-background">{children}</main>
-          <Footer resumes={resumes} />
+          <Footer resumes={resumes} locale={locale} />
         </ThemeProvider>
       </body>
     </html>

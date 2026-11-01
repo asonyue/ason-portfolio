@@ -1,0 +1,136 @@
+{
+  "personal": {
+    "name": "Yue Chun Hei (Ason)",
+    "shortName": "Ason Yue",
+    "title": "串連商業需求與科技解決方案",
+    "subtitle": "具備資安顧問、金融科技品質工程與 AI 輔助解決方案開發經驗，致力將複雜問題轉化為實用的數位產品。",
+    "location": "台灣台北",
+    "email": "ason06057@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/ason-yue-486991200",
+    "github": "https://github.com/asonyue",
+    "website": "https://asonyue.com"
+  },
+  "stories": [
+    {
+      "title": "從理解問題，到驗證解決方案",
+      "description": "我的經驗橫跨資安評估、金融科技系統測試與獨立產品開發。我重視理解使用者的工作方式，將需求轉化為實際流程，並確認系統的行為符合預期。"
+    }
+  ],
+  "skills": {
+    "categories": [
+      {
+        "name": "商業與流程分析",
+        "description": "釐清需求、整理評估發現，並改善日常工作流程。",
+        "items": [
+          "需求分析",
+          "資安成熟度評估",
+          "Excel 資料分析與報告",
+          "利害關係人溝通",
+          "技術文件撰寫"
+        ],
+        "evidence": "應用於 Systex 的企業資安評估工作。"
+      },
+      {
+        "name": "系統品質與整合",
+        "description": "驗證支付流程、調查後端行為，透過跨團隊協作提升軟體品質。",
+        "items": [
+          "功能、迴歸與整合測試",
+          "使用 Postman 與 Charles Proxy 進行 API 測試",
+          "SQL 與 OpenSearch 資料驗證",
+          "JaCoCo 測試涵蓋率協調",
+          "Maestro 自動化與 Jira"
+        ],
+        "evidence": "應用於 Hytech 的金融科技網站與行動系統。"
+      },
+      {
+        "name": "AI 與數位解決方案",
+        "description": "定義產品規則與流程，運用 AI 輔助開發，並驗證數位解決方案的實用性。",
+        "items": [
+          "產品需求與流程設計",
+          "使用 Codex 進行 AI 輔助開發",
+          "生成式 AI 與工具呼叫流程",
+          "Next.js、React 與 TypeScript",
+          "PostgreSQL 與 Prisma"
+        ],
+        "evidence": "應用於 Flowline 的產品規劃、開發與測試。"
+      }
+    ]
+  },
+  "experience": [
+    {
+      "company": "Hytech Technology",
+      "role": "軟體品質工程師",
+      "location": "台灣",
+      "period": "2025 年 8 月 – 2026 年 10 月",
+      "type": "全職",
+      "icon": "/logos/hytech-logo.png",
+      "descriptions": [
+        "驗證金融科技網站與行動應用程式的支付流程，涵蓋入金、出金、轉帳及相關系統整合。",
+        "使用 SQL 與 OpenSearch 調查後端資料及系統行為，並與開發人員協調 JaCoCo 測試涵蓋率分析。",
+        "透過 AI 輔助測試與 Maestro 自動化，協助改善 QA 流程。",
+        "與馬來西亞、中國及台灣的產品經理、開發人員和 QA 團隊進行跨國協作。"
+      ]
+    },
+    {
+      "company": "Systex Corporation",
+      "role": "資安顧問實習生",
+      "location": "台灣",
+      "period": "2025 年 2 月 – 2025 年 6 月",
+      "type": "實習",
+      "icon": "/logos/systex-logo.png",
+      "descriptions": [
+        "透過客戶訪談、需求討論與顧問報告，協助企業進行零信任成熟度評估。",
+        "以公式化範本改善 Excel 評估資料的處理與報告流程。",
+        "參與團隊開發的數位評估平台，協助系統測試、API 驗證、文件撰寫與交接。"
+      ]
+    },
+    {
+      "company": "DHY International Technology",
+      "role": "軟體開發實習生",
+      "location": "台灣",
+      "period": "2024 年 7 月 – 2025 年 1 月",
+      "type": "實習",
+      "icon": "",
+      "descriptions": [
+        "使用 C# 與 .NET 參與後端應用程式開發，包含 Google Ads API 整合。"
+      ]
+    },
+    {
+      "company": "Temple University",
+      "role": "語言輔導員暨學生大使",
+      "location": "美國",
+      "period": "2023 年 8 月 – 2024 年 5 月",
+      "type": "兼職",
+      "icon": "/logos/temple-logo.png",
+      "descriptions": [
+        "為國際學生提供語言輔導與寫作協助，並擔任 Temple University 學生大使。"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "school": "淡江大學",
+      "degree": "資訊工程學士",
+      "location": "台灣",
+      "period": "2021 – 2025",
+      "gpa": "3.8",
+      "icon": "/logos/tamkang-logo.png",
+      "highlights": [
+        "獲全額獎學金赴 Temple University 交換（2023–2024）",
+        "交換期間擔任語言輔導員暨學生大使",
+        "以優異成績畢業"
+      ]
+    },
+    {
+      "school": "Temple University（天普大學）",
+      "degree": "交換學生",
+      "location": "美國",
+      "period": "2023 – 2024",
+      "icon": "/logos/temple-logo.png",
+      "highlights": [
+        "全額獎學金獲獎者",
+        "擔任語言輔導員暨學生大使"
+      ]
+    }
+  ]
+}

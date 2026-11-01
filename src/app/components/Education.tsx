@@ -2,9 +2,11 @@
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import educationData from '../../../content/education.json';
+import type { HomepageContent } from '../../../content/portfolio';
+import { siteCopy, type Locale } from '../../../content/site-copy';
 
-export function Education() {
+export function Education({ data: educationData, locale }: { data: HomepageContent['education']; locale: Locale }) {
+  const copy = siteCopy[locale];
   return (
     <section id="education" className="py-24 px-6">
       <div className="max-w-4xl mx-auto">
@@ -13,9 +15,9 @@ export function Education() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl font-bold text-center mb-16"
+          className="font-[family-name:var(--font-display)] text-4xl md:text-5xl font-bold text-center mb-16"
         >
-          Educational <span className="text-accent">Background</span>
+          {copy.educationPrefix}<span className="text-accent">{copy.educationAccent}</span>
         </motion.h2>
 
         <div className="space-y-6">
@@ -35,7 +37,7 @@ export function Education() {
                   </div>
                 ) : (
                   <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-accent/20 flex items-center justify-center flex-shrink-0">
-                    <span className="font-[family-name:var(--font-playfair)] text-lg font-bold text-accent">
+                    <span className="font-[family-name:var(--font-display)] text-lg font-bold text-accent">
                       {edu.school.charAt(0)}
                     </span>
                   </div>
@@ -43,7 +45,7 @@ export function Education() {
                 <div className="flex-1 min-w-0 w-full">
                   <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1">
                     <div>
-                      <h3 className="font-[family-name:var(--font-playfair)] text-lg sm:text-xl font-bold text-foreground">
+                      <h3 className="font-[family-name:var(--font-display)] text-lg sm:text-xl font-bold text-foreground">
                         {edu.school}
                       </h3>
                       <p className="text-foreground/70 text-sm">{edu.degree} • {edu.location}</p>

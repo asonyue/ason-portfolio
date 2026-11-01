@@ -2,9 +2,11 @@
 
 import Image from 'next/image';
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
-import personalData from '../../../content/personal.json';
+import type { HomepageContent } from '../../../content/portfolio';
+import { siteCopy, type Locale } from '../../../content/site-copy';
 
-export function Hero({ hasResumes }: { hasResumes: boolean }) {
+export function Hero({ hasResumes, personalData, locale }: { hasResumes: boolean; personalData: HomepageContent['personal']; locale: Locale }) {
+  const copy = siteCopy[locale];
   const reduceMotion = useReducedMotion();
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 500], [0, 200]);
@@ -41,13 +43,13 @@ export function Hero({ hasResumes }: { hasResumes: boolean }) {
             transition={{ delay: 0.2 }}
             className="font-[family-name:var(--font-jetbrains)] text-accent text-sm mb-4"
           >
-            Hello, I&apos;m
+            {copy.greeting}
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
-            className="font-[family-name:var(--font-playfair)] text-4xl md:text-6xl lg:text-7xl font-bold mb-6"
+            className="font-[family-name:var(--font-display)] text-4xl md:text-6xl lg:text-7xl font-bold mb-6"
           >
             <span className="gradient-text">{personalData.name}</span>
           </motion.h1>
@@ -55,7 +57,7 @@ export function Hero({ hasResumes }: { hasResumes: boolean }) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
-            className="font-[family-name:var(--font-playfair)] text-2xl md:text-3xl font-bold text-foreground mb-5 max-w-2xl leading-snug"
+            className="font-[family-name:var(--font-display)] text-2xl md:text-3xl font-bold text-foreground mb-5 max-w-2xl leading-snug"
           >
             {personalData.title}
           </motion.p>
@@ -70,13 +72,13 @@ export function Hero({ hasResumes }: { hasResumes: boolean }) {
               href="#projects"
               className="px-8 py-3 bg-accent text-button-foreground font-semibold rounded-full hover:bg-accent/90 transition-all duration-300 hover:scale-105 glow-accent"
             >
-              View Projects
+              {copy.viewProjects}
             </a>
             <a
               href={hasResumes ? '#resume' : '#contact'}
               className="px-8 py-3 border border-foreground/30 text-foreground font-semibold rounded-full hover:border-accent hover:text-accent transition-all duration-300"
             >
-              {hasResumes ? 'Explore Resumes' : 'Contact Me'}
+              {hasResumes ? copy.exploreResumes : copy.contactMe}
             </a>
           </motion.div>
           <motion.div
@@ -110,7 +112,7 @@ export function Hero({ hasResumes }: { hasResumes: boolean }) {
             <a
               href={`mailto:${personalData.email}`}
               className="text-foreground/60 hover:text-accent transition-colors"
-              aria-label="Email"
+              aria-label={copy.email}
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
