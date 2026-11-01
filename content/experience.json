@@ -1,44 +1,51 @@
 [
   {
-    "company": "Hytech",
-    "role": "Quality Assurance Engineer",
+    "company": "Hytech Technology",
+    "role": "Software Quality Engineer",
     "location": "Taiwan",
-    "period": "August 2025 - Present",
+    "period": "August 2025 – October 2026",
     "type": "Full-time",
     "icon": "/logos/hytech-logo.png",
     "descriptions": [
-      "Function and regression testing on web + mobile for payment modules (deposit, withdraw, transfer) across sub-brands and regulators (VFSC2, ASIC, FCA)",
-      "Integration testing across CRM, SRC, Anti-Fraud, Account and Activity modules",
-      "SQL and OpenSearch log analysis for backend validation",
-      "AI-assisted test design with JaCoCo coverage analysis",
-      "Daily collaboration with PMs, developers, and QA teams in Malaysia, China, and Taiwan"
+      "Validated FinTech payment flows across web and mobile, including deposits, withdrawals, transfers, and related system integrations.",
+      "Used SQL and OpenSearch to investigate backend data and system behavior; coordinated JaCoCo coverage analysis with developers.",
+      "Supported QA process improvement through AI-assisted testing and Maestro automation.",
+      "Collaborated with product managers, developers, and QA teams across Malaysia, China, and Taiwan."
     ]
   },
   {
-    "company": "SYSTEX",
-    "role": "Cyber Security Consultant Intern",
+    "company": "Systex Corporation",
+    "role": "Cybersecurity Consultant Intern",
     "location": "Taiwan",
-    "period": "February 2025 - June 2025",
+    "period": "February 2025 – June 2025",
     "type": "Internship",
     "icon": "/logos/systex-logo.png",
     "descriptions": [
-      "Zero Trust Maturity Model (ZTMM) assessments for banking, restaurant, and manufacturing clients",
-      "Transformed manual Excel ZTMM scoring process into formula-driven templates",
-      "Co-developed Python automation system for scoring and reporting",
-      "Conducted requirement meetings with senior consultants and enterprise clients"
+      "Supported enterprise Zero Trust maturity assessments through client interviews, requirements discussions, and consulting reports.",
+      "Improved Excel-based assessment workflows with formula-driven templates for processing and reporting.",
+      "Contributed to a team-developed digital assessment platform through system testing, API validation, documentation, and handover."
+    ]
+  },
+  {
+    "company": "DHY International Technology",
+    "role": "Software Development Intern",
+    "location": "Taiwan",
+    "period": "July 2024 – January 2025",
+    "type": "Internship",
+    "icon": "",
+    "descriptions": [
+      "Worked on backend application development with C# and .NET, including Google Ads API integration."
     ]
   },
   {
     "company": "Temple University",
     "role": "Language Tutor & Student Ambassador",
     "location": "United States",
-    "period": "August 2023 - May 2024",
+    "period": "August 2023 – May 2024",
     "type": "Part-time",
     "icon": "/logos/temple-logo.png",
     "descriptions": [
-      "Provided language tutoring and writing assistance to international students",
-      "Served as student ambassador representing Temple University",
-      "Excelled in 3 roles simultaneously during exchange program"
+      "Provided language tutoring and writing support to international students and represented Temple University as a student ambassador."
     ]
   }
 ]

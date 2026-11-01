@@ -21,9 +21,9 @@ export function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="text-foreground/60 text-lg mb-12"
+          className="text-foreground/80 text-lg mb-12"
         >
-          Have a project idea or just want to say hi? I&apos;d love to hear from you!
+          Interested in my experience in technology consulting, quality engineering, or digital solutions? Let&apos;s start a conversation.
         </motion.p>
 
         <motion.div
@@ -35,16 +35,16 @@ export function Contact() {
         >
           <a
             href={`mailto:${personalData.email}`}
-            className="flex items-center gap-3 px-6 py-3 bg-card rounded-full hover:bg-accent/10 transition-colors duration-300 group"
+            className="flex items-center gap-3 px-4 sm:px-6 py-3 max-w-full bg-card rounded-full hover:bg-accent/10 transition-colors duration-300 group"
           >
             <span className="text-accent group-hover:scale-110 transition-transform">✉</span>
-            <span className="font-[family-name:var(--font-jetbrains)]">{personalData.email}</span>
+            <span className="font-[family-name:var(--font-jetbrains)] text-sm sm:text-base break-all">{personalData.email}</span>
           </a>
           <a
             href={personalData.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-3 px-6 py-3 bg-card rounded-full hover:bg-secondary/10 transition-colors duration-300 group"
+            className="flex items-center gap-3 px-4 sm:px-6 py-3 max-w-full bg-card rounded-full hover:bg-secondary/10 transition-colors duration-300 group"
           >
             <span className="text-secondary group-hover:scale-110 transition-transform">GH</span>
             <span className="font-[family-name:var(--font-jetbrains)]">GitHub</span>
@@ -53,7 +53,7 @@ export function Contact() {
             href={personalData.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-3 px-6 py-3 bg-card rounded-full hover:bg-accent/10 transition-colors duration-300 group"
+            className="flex items-center gap-3 px-4 sm:px-6 py-3 max-w-full bg-card rounded-full hover:bg-accent/10 transition-colors duration-300 group"
           >
             <span className="text-accent group-hover:scale-110 transition-transform">IN</span>
             <span className="font-[family-name:var(--font-jetbrains)]">LinkedIn</span>
@@ -66,9 +66,9 @@ export function Contact() {
           viewport={{ once: true }}
           transition={{ delay: 0.6 }}
           href={`mailto:${personalData.email}`}
-          className="inline-block px-10 py-4 bg-accent text-background font-semibold text-lg rounded-full hover:bg-accent/90 transition-all duration-300 hover:scale-105 glow-accent"
+          className="inline-block px-10 py-4 bg-accent text-button-foreground font-semibold text-lg rounded-full hover:bg-accent/90 transition-all duration-300 hover:scale-105 glow-accent"
         >
-          Say Hello!
+          Get in Touch
         </motion.a>
       </div>
     </section>

@@ -1,9 +1,11 @@
 'use client';
 
-import { motion, useScroll, useTransform } from 'framer-motion';
+import Image from 'next/image';
+import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import personalData from '../../../content/personal.json';
 
-export function Hero() {
+export function Hero({ hasResumes }: { hasResumes: boolean }) {
+  const reduceMotion = useReducedMotion();
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 500], [0, 200]);
   const y2 = useTransform(scrollY, [0, 500], [0, -150]);
@@ -11,22 +13,22 @@ export function Hero() {
   const y4 = useTransform(scrollY, [0, 500], [0, -80]);
 
   return (
-    <section id="hero" className="min-h-screen relative flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
+    <section id="hero" className="min-h-svh py-32 md:py-36 relative flex items-center justify-center overflow-hidden">
+      <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
         <motion.div
-          style={{ y: y1 }}
+          style={{ y: reduceMotion ? 0 : y1 }}
           className="absolute top-20 left-10 w-32 h-32 border border-accent/20 rounded-full float-animation"
         />
         <motion.div
-          style={{ y: y2 }}
+          style={{ y: reduceMotion ? 0 : y2 }}
           className="absolute top-40 right-20 w-24 h-24 border border-secondary/20 rounded-lg float-animation-reverse"
         />
         <motion.div
-          style={{ y: y3 }}
+          style={{ y: reduceMotion ? 0 : y3 }}
           className="absolute bottom-40 left-1/4 w-16 h-16 bg-accent/10 rounded-full float-animation"
         />
         <motion.div
-          style={{ y: y4 }}
+          style={{ y: reduceMotion ? 0 : y4 }}
           className="absolute bottom-20 right-1/3 w-20 h-20 border border-secondary/30 rounded-lg float-animation-reverse"
         />
       </div>
@@ -53,10 +55,11 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
-            className="font-[family-name:var(--font-jetbrains)] text-lg md:text-xl text-muted mb-8 max-w-2xl"
+            className="font-[family-name:var(--font-playfair)] text-2xl md:text-3xl font-bold text-foreground mb-5 max-w-2xl leading-snug"
           >
             {personalData.title}
           </motion.p>
+          <p className="text-foreground/80 text-base sm:text-lg leading-relaxed mb-8 max-w-2xl">{personalData.subtitle}</p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -64,17 +67,16 @@ export function Hero() {
             className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start mb-6"
           >
             <a
-              href="/resume.pdf"
-              download
-              className="px-8 py-3 bg-accent text-background font-semibold rounded-full hover:bg-accent/90 transition-all duration-300 hover:scale-105 glow-accent"
+              href="#projects"
+              className="px-8 py-3 bg-accent text-button-foreground font-semibold rounded-full hover:bg-accent/90 transition-all duration-300 hover:scale-105 glow-accent"
             >
-              Download Resume
+              View Projects
             </a>
             <a
-              href="#contact"
+              href={hasResumes ? '#resume' : '#contact'}
               className="px-8 py-3 border border-foreground/30 text-foreground font-semibold rounded-full hover:border-accent hover:text-accent transition-all duration-300"
             >
-              Contact Me
+              {hasResumes ? 'Explore Resumes' : 'Contact Me'}
             </a>
           </motion.div>
           <motion.div
@@ -123,8 +125,13 @@ export function Hero() {
           transition={{ delay: 0.5 }}
           className="w-48 h-48 md:w-64 md:h-64 flex-shrink-0"
         >
-          <img
+          <Image
             src="/images/ason-photo.png"
+            width={256}
+            height={256}
+            sizes="(min-width: 768px) 256px, 192px"
+            loading="eager"
+            fetchPriority="high"
             alt={personalData.shortName}
             className="w-full h-full object-cover rounded-2xl"
           />
@@ -135,10 +142,11 @@ export function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2"
+        aria-hidden="true"
+        className="hidden lg:block absolute bottom-10 left-1/2 -translate-x-1/2"
       >
         <motion.div
-          animate={{ y: [0, 10, 0] }}
+          animate={reduceMotion ? { y: 0 } : { y: [0, 10, 0] }}
           transition={{ repeat: Infinity, duration: 1.5 }}
           className="w-6 h-10 border-2 border-foreground/30 rounded-full flex justify-center pt-2"
         >

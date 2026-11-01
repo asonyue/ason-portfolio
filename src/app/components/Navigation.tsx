@@ -1,108 +1,91 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import Link from 'next/link';
+import { useState, useEffect, useRef } from 'react';
+import type { ResumeLink } from '../../../content/resumes';
 import { useTheme } from '../ThemeContext';
 
-export function Navigation() {
+export function Navigation({ resumes }: { resumes: ResumeLink[] }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const navigationRef = useRef<HTMLElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
   const { theme, themeMode, toggleTheme } = useTheme();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleNavClick = () => setMobileMenuOpen(false);
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    menuRef.current?.querySelector('a')?.focus();
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setMobileMenuOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    };
+    const handlePointerDown = (event: PointerEvent) => {
+      if (!navigationRef.current?.contains(event.target as Node)) setMobileMenuOpen(false);
+    };
+    const desktop = window.matchMedia('(min-width: 768px)');
+    const handleBreakpoint = () => { if (desktop.matches) setMobileMenuOpen(false); };
+    document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener('pointerdown', handlePointerDown);
+    desktop.addEventListener('change', handleBreakpoint);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('pointerdown', handlePointerDown);
+      desktop.removeEventListener('change', handleBreakpoint);
+    };
+  }, [mobileMenuOpen]);
 
   const navLinks = [
-    { name: 'About', href: '#stories' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Experience', href: '#experience' },
-    { name: 'Education', href: '#education' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'About', href: '/#about' },
+    { name: 'Experience', href: '/#experience' },
+    { name: 'Projects', href: '/#projects' },
+    { name: 'Skills', href: '/#skills' },
+    ...(resumes.length > 0 ? [{ name: 'Resume', href: '/#resume' }] : []),
+    { name: 'Contact', href: '/#contact' },
   ];
-
-  const themeButtonIcon =
-    themeMode === 'system' ? (theme === 'dark' ? '🖥️🌙' : '🖥️☀️') : themeMode === 'light' ? '☀️' : '🌙';
-
-  const themeButtonTitle =
-    themeMode === 'system'
-      ? `Theme: Auto (${theme}). Click to cycle Auto -> Light -> Dark.`
-      : `Theme: ${themeMode}. Click to cycle Auto -> Light -> Dark.`;
+  const themeButtonIcon = themeMode === 'system' ? (theme === 'dark' ? '🖥️🌙' : '🖥️☀️') : themeMode === 'light' ? '☀️' : '🌙';
+  const themeButtonTitle = `Theme: ${themeMode === 'system' ? `Auto (${theme})` : themeMode}. Cycle Auto, Light, Dark.`;
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-background/80 backdrop-blur-md py-4' : 'bg-transparent py-4 sm:py-6'
-      }`}
+    <nav
+      ref={navigationRef}
+      aria-label="Main navigation"
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setMobileMenuOpen(false);
+      }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 py-4 ${scrolled || mobileMenuOpen ? 'bg-background/95 backdrop-blur-md border-b border-foreground/10' : 'bg-background/90'}`}
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 flex justify-between items-center">
-        <a
-          href="#"
-          className="font-[family-name:var(--font-playfair)] text-xl sm:text-2xl font-bold text-foreground"
-        >
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 flex justify-between items-center gap-3">
+        <Link href="/#hero" onClick={() => setMobileMenuOpen(false)} aria-label="Ason Yue home" className="font-[family-name:var(--font-playfair)] text-xl sm:text-2xl font-bold">
           Ason<span className="text-accent">.</span>
-        </a>
-        <div className="flex items-center gap-2">
-          <div className="hidden md:flex gap-3 lg:gap-4">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="relative text-foreground/80 hover:text-foreground transition-colors duration-300 group text-sm lg:text-base"
-              >
-                {link.name}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full" />
-              </a>
-            ))}
+        </Link>
+        <div className="flex items-center gap-3 lg:gap-5">
+          <div className="hidden md:flex gap-3 lg:gap-5">
+            {navLinks.map((link) => <Link key={link.name} href={link.href} className="text-foreground/80 hover:text-accent transition-colors text-sm lg:text-base">{link.name}</Link>)}
           </div>
-          <div className="flex gap-1 sm:gap-2 items-center">
-            <button
-              onClick={toggleTheme}
-              suppressHydrationWarning
-              className="p-1.5 sm:p-2 rounded-full bg-card hover:bg-accent/20 border border-foreground/20 transition-colors duration-300 text-sm"
-              title={themeButtonTitle}
-            >
-              {themeButtonIcon}
-            </button>
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 rounded-lg bg-card border border-foreground/20"
-            >
-              {mobileMenuOpen ? '✕' : '☰'}
-            </button>
-          </div>
+          <button type="button" onClick={toggleTheme} suppressHydrationWarning aria-label={themeButtonTitle} title={themeButtonTitle} className="min-w-11 min-h-11 p-2 rounded-full bg-card border border-foreground/20 hover:bg-accent/10 transition-colors text-sm">
+            <span aria-hidden="true" suppressHydrationWarning>{themeButtonIcon}</span>
+          </button>
+          <button ref={menuButtonRef} type="button" onClick={() => setMobileMenuOpen((open) => !open)} aria-expanded={mobileMenuOpen} aria-controls="mobile-navigation" aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'} className="md:hidden min-w-11 min-h-11 p-2 rounded-lg bg-card border border-foreground/20">
+            <span aria-hidden="true">{mobileMenuOpen ? '✕' : '☰'}</span>
+          </button>
         </div>
       </div>
-
-      {mobileMenuOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="md:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-md border-t border-foreground/10"
-        >
-          <div className="flex flex-col py-4 px-4">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={handleNavClick}
-                className="py-3 text-foreground/80 hover:text-foreground transition-colors"
-              >
-                {link.name}
-              </a>
-            ))}
-          </div>
-        </motion.div>
-      )}
-    </motion.nav>
+      <div ref={menuRef} id="mobile-navigation" hidden={!mobileMenuOpen} className="md:hidden absolute top-full left-0 right-0 bg-background border-y border-foreground/15 max-h-[calc(100dvh-5rem)] overflow-y-auto">
+        <div className="flex flex-col py-3 px-6">
+          {navLinks.map((link) => <Link key={link.name} href={link.href} onClick={() => { setMobileMenuOpen(false); menuButtonRef.current?.focus(); }} className="py-3 text-foreground/80 hover:text-accent">{link.name}</Link>)}
+        </div>
+      </div>
+    </nav>
   );
 }

@@ -1,25 +1,29 @@
-'use client';
-
-import { Navigation } from './components/Navigation';
+import type { Metadata } from 'next';
 import { Hero } from './components/Hero';
 import { Stories } from './components/Stories';
 import { Skills } from './components/Skills';
 import { WorkExperience } from './components/WorkExperience';
 import { Education } from './components/Education';
 import { Contact } from './components/Contact';
-import { Footer } from './components/Footer';
+import { Projects } from './components/Projects';
+import { Resume } from './components/Resume';
+import { getAvailableResumes } from '../lib/resumes';
+
+export const metadata: Metadata = { alternates: { canonical: '/' } };
 
 export default function Home() {
+  const resumes = getAvailableResumes();
+
   return (
-    <main className="min-h-screen bg-background">
-      <Navigation />
-      <Hero />
+    <>
+      <Hero hasResumes={resumes.length > 0} />
       <Stories />
-      <Skills />
       <WorkExperience />
+      <Projects />
+      <Skills />
       <Education />
+      <Resume resumes={resumes} />
       <Contact />
-      <Footer />
-    </main>
+    </>
   );
 }

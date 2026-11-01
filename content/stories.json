@@ -1,14 +1,6 @@
 [
   {
-    "title": "Payments + Multi-Regulator",
-    "description": "Testing deposit, withdraw, and transfer flows across Hytech's sub-brands with compliance across VFSC2, ASIC, and FCA regulatory requirements. Ensuring seamless payment operations in a highly regulated fintech environment."
-  },
-  {
-    "title": "Integration / Anti-Fraud",
-    "description": "Daily collaboration with PM/dev/QA teams across Malaysia, China, and Taiwan. Integration testing across CRM, SRC, Anti-Fraud, Account, and Activity modules. Backend validation using SQL and OpenSearch, with JaCoCo for coverage analysis."
-  },
-  {
-    "title": "Zero Trust Automation",
-    "description": "Systex internship transforming Zero Trust Maturity Model assessments for banking, F&B, and manufacturing clients. Evolved manual Excel scoring processes into formula-driven templates, then co-developed a Python automation system."
+    "title": "From understanding the problem to validating the solution",
+    "description": "My experience connects cybersecurity assessments, FinTech system testing, and independent product development. I enjoy understanding how people work, translating requirements into practical workflows, and checking that the resulting systems behave as intended."
   }
 ]

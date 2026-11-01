@@ -1,213 +1,72 @@
-# Ason Yue - Portfolio Website
+# Ason Yue — Personal Portfolio
 
-A modern, responsive portfolio website built with Next.js, showcasing QA engineering expertise with a focus on FinTech platform testing.
+A personal portfolio supporting Technology Consulting and QA Engineering applications. Built with Next.js 16.1.6 App Router, React 19, TypeScript, Tailwind CSS 4, and Framer Motion.
 
-## 🚀 Quick Start
+The existing orange/cyan palette, Playfair Display headings, DM Sans body text, JetBrains Mono accents, portrait, and light/dark/system themes are retained. The site is English-only.
 
-### Running Locally
+## Development
 
 ```bash
-# Install dependencies
-npm install
-
-# Start development server
+npm ci
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-### Building for Production
+Open the Local URL printed by Next.js. Validation commands:
 
 ```bash
-# Build the site
+npm run lint
+npx tsc --noEmit
 npm run build
-
-# Start production server
 npm start
 ```
 
-## 📝 Editing Content
+The production build downloads the existing Google Fonts, so it needs access to Google Fonts. No additional application dependencies are required by the portfolio optimization.
 
-All site content is stored in JSON files under the `content/` directory. **No code changes are needed** to update your information.
+## Routes and content
 
-### Content Files
+| Route | Purpose |
+| --- | --- |
+| `/` | Introduction, background, experience, projects, capabilities, education, available resumes, and contact |
+| `/projects/flowline` | Independent finance product: requirements, workflows, AI-assisted development, and validation |
+| `/projects/zero-trust` | Team-developed internship platform: assessment workflows, testing, API validation, and handover |
 
-#### `content/personal.json`
-Your basic information, contact details, and social links.
+Homepage copy is stored in `content/personal.json`, `stories.json` (the compact About section), `experience.json`, `skills.json`, and `education.json`. Project copy and optional media are typed records in `content/projects.ts`. Explicit project route pages reuse `ProjectCaseStudy`.
 
-```json
-{
-  "name": "Your Full Name",
-  "shortName": "Your Short Name",
-  "title": "Your Professional Title",
-  "email": "your.email@example.com",
-  "linkedin": "https://linkedin.com/in/yourprofile",
-  "github": "https://github.com/yourusername",
-  "website": "https://yoursite.com"
-}
-```
+Navigation and Footer are shared in the root layout. Homepage section links use `/#section` so they also work from project pages. The old `#stories` anchor remains available. Language detection is detached from the active layout; older unused translation components remain in the repository.
 
-#### `content/stories.json`
-Three short stories highlighting your key achievements and areas of expertise. These appear in the "What I Do" section.
+## Resume downloads
 
-```json
-[
-  {
-    "title": "Story Title",
-    "description": "Brief description of your achievement or expertise area."
-  }
-]
-```
+Role-specific PDFs are not yet configured. The existing `public/resume.pdf` is retained for compatibility, but its contents have not been reviewed and it is not linked by the site. Do not run `generate-resume.py` to create a final resume; it is an older placeholder generator.
 
-#### `content/experience.json`
-Your work experience in reverse chronological order.
+To enable a resume:
 
-```json
-[
-  {
-    "company": "Company Name",
-    "role": "Your Position",
-    "location": "City, Country",
-    "period": "Start Date - End Date",
-    "type": "Full-time / Part-time / Internship",
-    "icon": "/logos/company-logo.png",
-    "descriptions": [
-      "Achievement or responsibility 1",
-      "Achievement or responsibility 2"
-    ]
-  }
-]
-```
+1. Review the final PDF for accurate dates, job titles, contributions, and public contact details.
+2. Add it under `public/resumes/`, for example `technology-consulting.pdf` or `qa-engineering.pdf`.
+3. Set that entry's `href` in `content/resumes.ts` to `/resumes/<filename>.pdf` and set `reviewed: true`.
+4. Rebuild and check the download.
 
-#### `content/skills.json`
-Your technical skills organized by category.
+The shared server-side availability check requires a reviewed entry and an existing, nonempty local PDF file. Missing or unreviewed entries produce no buttons. The Resume section, hero action, navigation item, and footer downloads all use this same availability check. Static pages must be rebuilt when the PDFs or configuration change.
 
-```json
-{
-  "categories": [
-    {
-      "name": "Category Name",
-      "items": ["Skill 1", "Skill 2", "Skill 3"]
-    }
-  ]
-}
-```
+## Project media and public demo
 
-#### `content/education.json`
-Your educational background.
+Screenshots are optional and currently absent. Add only reviewed screenshots with synthetic or redacted data under `public/projects/`. Add their local path, descriptive alt text, caption, and natural pixel dimensions to the project's `images` array. The first screenshot appears on its homepage card; the case study renders a responsive gallery. Empty media collections produce no placeholders.
 
-```json
-[
-  {
-    "school": "University Name",
-    "degree": "Degree and Major",
-    "location": "City, Country",
-    "period": "Start - End",
-    "gpa": "3.8",
-    "icon": "/logos/school-logo.png",
-    "highlights": [
-      "Achievement 1",
-      "Achievement 2"
-    ]
-  }
-]
-```
+The supplied Zero Trust introduction video is linked externally. Its YouTube metadata identifies it as a Zero Trust questionnaire system introduction by ZTMM Systex. Review any replacement media for client information before publishing it.
 
-## 📄 Resume Download
+Flowline's staging demo is intentionally not linked. Before adding the optional `demo` field to its project record, verify an isolated environment with synthetic data, scoped demo access, and no access to personal financial records or private credentials. The portfolio does not import or publish Flowline application source.
 
-### Replacing the Resume PDF
+Do not add an efficiency percentage, adoption figure, or ownership claim without supporting evidence. Keep the Zero Trust platform's team contributions distinct from personal testing, documentation, and video work.
 
-1. Place your PDF resume at: `public/resume.pdf`
-2. The download buttons in the hero and footer sections will automatically serve your file
-3. File name **must** be `resume.pdf` (all lowercase)
+## Accessibility and images
 
-**Current Status:** The site includes a placeholder PDF. Replace `public/resume.pdf` with your actual resume.
+The shared shell includes a skip link, keyboard focus styling, fixed-header anchor offsets, and a mobile navigation disclosure with expanded state, initial link focus, Escape dismissal, and focus return. Decorative movement respects reduced-motion settings. Light-theme accent shades and muted text are adjusted for readability.
 
-### Download Locations
+The portrait and active homepage logos use Next.js Image with dimensions and responsive sizing. The original source assets are preserved; optimized delivery depends on the existing Next.js hosting runtime.
 
-- **Hero Section**: Primary "Download Resume" button below your name
-- **Footer**: Secondary download link for easy access
+Before publishing, check the three routes at mobile, tablet, and desktop widths, both themes, reduced motion, keyboard navigation, direct project visits, return links, external links, and configured PDF downloads.
 
-## 🎨 Customization
+## Deployment
 
-### Adding Company/School Logos
+The portfolio's public URL is https://asonyue.com. Earlier documentation describes Vercel, but this repository does not contain hosting-specific configuration. Keep the existing hosting and Git deployment workflow; no hosting migration or deployment is part of this local implementation.
 
-1. Save logos to `public/logos/` directory
-2. Reference them in content files: `"/logos/your-logo.png"`
-3. Recommended size: 40x40 to 80x80 pixels
-4. Formats: PNG or SVG
-
-### Profile Photo
-
-Replace `public/images/ason-photo.png` with your photo. Keep the filename or update it in `src/app/components/Hero.tsx`.
-
-## 🛠 Tech Stack
-
-- **Framework**: Next.js 16.1
-- **Styling**: Tailwind CSS 4
-- **Animations**: Framer Motion
-- **Language**: TypeScript
-- **Runtime**: React 19
-
-## 📱 Features
-
-- ✅ Fully responsive design (mobile, tablet, desktop)
-- ✅ Dark/light/auto theme support
-- ✅ Content-driven architecture (no hardcoded text)
-- ✅ Resume download functionality
-- ✅ Smooth animations and transitions
-- ✅ Clean, hiring-manager friendly design
-- ✅ SEO-ready structure
-
-## 📦 Deployment
-
-This site is deployed at [asonyue.com](https://asonyue.com).
-
-To deploy to Vercel:
-
-```bash
-# Install Vercel CLI
-npm i -g vercel
-
-# Deploy
-vercel
-```
-
-## 🔧 Project Structure
-
-```
-├── content/              # All site content (JSON files)
-│   ├── personal.json
-│   ├── stories.json
-│   ├── experience.json
-│   ├── skills.json
-│   └── education.json
-├── public/
-│   ├── resume.pdf       # Your resume (replace this)
-│   ├── images/          # Photos
-│   └── logos/           # Company/school logos
-├── src/
-│   └── app/
-│       ├── components/  # React components
-│       ├── page.tsx     # Main page
-│       └── layout.tsx   # App layout
-└── README.md
-```
-
-## 💡 Making Changes
-
-1. **Update Content**: Edit JSON files in `content/` directory
-2. **Replace Resume**: Replace `public/resume.pdf`
-3. **Add Logos**: Add images to `public/logos/`
-4. **Test Locally**: Run `npm run dev`
-5. **Deploy**: Push to GitHub or run `vercel`
-
-## 📞 Support
-
-For questions or issues, contact:
-- Email: ason06057@gmail.com
-- GitHub: [@asonyue](https://github.com/asonyue)
-
----
-
-Built with ❤️ by Ason Yue
+`REBUILD_SUMMARY.md` is historical documentation and does not describe the current content or resume status.

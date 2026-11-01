@@ -1,6 +1,7 @@
 'use client';
 
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { MotionConfig } from 'framer-motion';
 
 type Theme = 'dark' | 'light';
 type ThemeMode = Theme | 'system';
@@ -28,8 +29,12 @@ function getStoredThemeMode(): ThemeMode {
     return 'system';
   }
 
-  const savedTheme = window.localStorage.getItem(THEME_STORAGE_KEY);
-  return isThemeMode(savedTheme) ? savedTheme : 'system';
+  try {
+    const savedTheme = window.localStorage.getItem(THEME_STORAGE_KEY);
+    return isThemeMode(savedTheme) ? savedTheme : 'system';
+  } catch {
+    return 'system';
+  }
 }
 
 function getSystemTheme(): Theme {
@@ -77,7 +82,11 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   const setThemeMode = (nextThemeMode: ThemeMode) => {
     setThemeModeState(nextThemeMode);
-    window.localStorage.setItem(THEME_STORAGE_KEY, nextThemeMode);
+    try {
+      window.localStorage.setItem(THEME_STORAGE_KEY, nextThemeMode);
+    } catch {
+      // Theme controls remain usable when browser storage is unavailable.
+    }
   };
 
   const toggleTheme = () => {
@@ -103,7 +112,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   return (
     <ThemeContext.Provider value={value}>
-      {children}
+      <MotionConfig reducedMotion="user">{children}</MotionConfig>
     </ThemeContext.Provider>
   );
 }

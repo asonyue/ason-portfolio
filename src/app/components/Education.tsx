@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import educationData from '../../../content/education.json';
 
@@ -30,7 +31,7 @@ export function Education() {
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
                 {edu.icon ? (
                   <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-card-bg-light flex items-center justify-center overflow-hidden flex-shrink-0">
-                    <img src={edu.icon} alt={edu.school} className="w-8 h-8 sm:w-10 sm:h-10 object-contain" />
+                    <Image src={edu.icon} alt="" width={40} height={40} sizes="40px" className="w-8 h-8 sm:w-10 sm:h-10 object-contain" />
                   </div>
                 ) : (
                   <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-accent/20 flex items-center justify-center flex-shrink-0">
@@ -39,7 +40,7 @@ export function Education() {
                     </span>
                   </div>
                 )}
-                <div className="flex-1 w-full">
+                <div className="flex-1 min-w-0 w-full">
                   <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1">
                     <div>
                       <h3 className="font-[family-name:var(--font-playfair)] text-lg sm:text-xl font-bold text-foreground">
@@ -47,20 +48,20 @@ export function Education() {
                       </h3>
                       <p className="text-foreground/70 text-sm">{edu.degree} • {edu.location}</p>
                       {edu.gpa && (
-                        <p className="text-sm text-accent/80 mt-1 font-[family-name:var(--font-jetbrains)] font-semibold">
+                        <p className="text-sm text-accent mt-1 font-[family-name:var(--font-jetbrains)] font-semibold">
                           GPA: {edu.gpa}
                         </p>
                       )}
                     </div>
-                    <span className="font-[family-name:var(--font-jetbrains)] text-xs sm:text-sm text-muted whitespace-nowrap">
+                    <span className="font-[family-name:var(--font-jetbrains)] text-xs sm:text-sm text-muted">
                       {edu.period}
                     </span>
                   </div>
                   {edu.highlights && edu.highlights.length > 0 && (
                     <ul className="mt-3 space-y-1">
                       {edu.highlights.map((highlight, idx) => (
-                        <li key={idx} className="text-sm text-foreground/60 flex items-start gap-2">
-                          <span className="text-accent mt-1">▸</span>
+                        <li key={idx} className="text-sm text-foreground/80 flex items-start gap-2">
+                          <span aria-hidden="true" className="text-accent mt-1">▸</span>
                           <span>{highlight}</span>
                         </li>
                       ))}

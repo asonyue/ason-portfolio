@@ -1,34 +1,40 @@
 {
   "categories": [
     {
-      "name": "Testing Types",
+      "name": "Business & Process Analysis",
+      "description": "Understand requirements, structure assessment findings, and improve day-to-day workflows.",
       "items": [
-        "Functional Testing",
-        "Regression Testing",
-        "Integration Testing",
-        "Smoke Testing",
-        "Manual Testing",
-        "API Testing"
-      ]
+        "Requirements analysis",
+        "Cybersecurity maturity assessments",
+        "Excel analysis and reporting",
+        "Stakeholder communication",
+        "Technical documentation"
+      ],
+      "evidence": "Applied during enterprise assessments at Systex."
     },
     {
-      "name": "Tools & Platforms",
+      "name": "System Quality & Integration",
+      "description": "Validate payment journeys, investigate backend behavior, and collaborate across teams to improve software quality.",
       "items": [
-        "Postman",
-        "Charles",
-        "Selenium",
-        "MySQL",
-        "OpenSearch",
-        "JaCoCo",
-        "Jira"
-      ]
+        "Functional, regression, and integration testing",
+        "API testing with Postman and Charles Proxy",
+        "SQL and OpenSearch validation",
+        "JaCoCo coverage coordination",
+        "Maestro automation and Jira"
+      ],
+      "evidence": "Applied to FinTech web and mobile systems at Hytech."
     },
     {
-      "name": "Programming",
+      "name": "AI & Digital Solutions",
+      "description": "Define product rules and workflows, direct AI-assisted development, and validate practical digital solutions.",
       "items": [
-        "Python",
-        "JavaScript (basic)"
-      ]
+        "Product requirements and workflow design",
+        "AI-assisted development with Codex",
+        "Generative AI and tool-calling workflows",
+        "Next.js, React, and TypeScript",
+        "PostgreSQL and Prisma"
+      ],
+      "evidence": "Applied through product ownership and testing of Flowline."
     }
   ]
 }

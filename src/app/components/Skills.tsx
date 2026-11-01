@@ -14,7 +14,7 @@ export function Skills() {
           transition={{ duration: 0.6 }}
           className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl font-bold text-center mb-16"
         >
-          Professional <span className="text-secondary">Skills</span>
+          Professional <span className="text-secondary">Capabilities</span>
         </motion.h2>
 
         <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
@@ -27,20 +27,22 @@ export function Skills() {
               transition={{ delay: catIndex * 0.1 }}
               className="bg-card rounded-2xl p-6 hover:scale-[1.02] transition-transform duration-300"
             >
-              <h3 className="font-[family-name:var(--font-jetbrains)] text-accent text-lg font-semibold mb-4">
+              <h3 className="font-[family-name:var(--font-playfair)] text-accent text-xl font-bold mb-4">
                 {category.name}
               </h3>
-              <ul className="space-y-2">
+              <p className="text-foreground/80 text-sm leading-relaxed mb-6">{category.description}</p>
+              <ul className="space-y-3">
                 {category.items.map((item) => (
                   <li
                     key={item}
-                    className="text-foreground/70 text-sm font-[family-name:var(--font-jetbrains)] flex items-center gap-2"
+                    className="text-foreground/80 text-sm flex items-start gap-3 leading-relaxed"
                   >
-                    <span className="w-1.5 h-1.5 bg-secondary rounded-full" />
+                    <span aria-hidden="true" className="w-1.5 h-1.5 mt-2 flex-shrink-0 bg-secondary rounded-full" />
                     {item}
                   </li>
                 ))}
               </ul>
+              <p className="mt-6 pt-5 border-t border-foreground/15 text-sm text-foreground/75 leading-relaxed">{category.evidence}</p>
             </motion.div>
           ))}
         </div>
